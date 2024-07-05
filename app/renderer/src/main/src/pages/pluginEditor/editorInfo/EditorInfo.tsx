@@ -27,6 +27,8 @@ export interface EditorInfoFormRefProps {
 interface EditorBaseInfoProps {
     ref?: ForwardedRef<EditorInfoFormRefProps>
 
+    isEdit?: boolean
+
     /** 初始默认数据 */
     data?: YakitPluginBaseInfo
     /** 初始插件类型 */
@@ -99,7 +101,7 @@ interface EditorInfoFormProps extends EditorBaseInfoProps {}
 /** @name 插件基础信息表单 */
 export const EditorInfoForm: React.FC<EditorInfoFormProps> = memo(
     forwardRef((props, ref) => {
-        const {data, initType, setType, setName} = props
+        const {isEdit, data, initType, setType, setName} = props
 
         const [form] = Form.useForm()
         useImperativeHandle(
@@ -267,7 +269,7 @@ export const EditorInfoForm: React.FC<EditorInfoFormProps> = memo(
                         name='Type'
                         rules={[{required: true, message: "脚本类型必填"}]}
                     >
-                        <PluginTypeSelect size='large' />
+                        <PluginTypeSelect size='large' disabled={!!isEdit} />
                     </Form.Item>
 
                     <Form.Item

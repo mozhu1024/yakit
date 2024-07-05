@@ -131,6 +131,9 @@ import {
 } from "./deprecatedMenu"
 import {SimpleDetect} from "@/pages/simpleDetect/SimpleDetect"
 import {YakitRoute} from "../enums/yakitRoute"
+import {PluginEditor} from "@/pages/pluginEditor/pluginEditor/PluginEditor"
+import {YakitImageTextarea} from "@/pages/pluginEditor/yakitImageTextarea/YakitImageTextarea"
+import {AddYakitPlugin} from "@/pages/pluginEditor/addYakitPlugin/AddYakitPlugin"
 
 const HTTPHacker = React.lazy(() => import("../pages/hacker/httpHacker"))
 const NewHome = React.lazy(() => import("@/pages/newHome/NewHome"))
@@ -409,7 +412,13 @@ export const RouteToPage: (props: PageItemProps) => ReactNode = (props) => {
     const {routeKey, yakScriptId, params} = props
     switch (routeKey) {
         case YakitRoute.NewHome:
-            return <NewHome />
+            // return <NewHome />
+            // return <PluginEditor/>
+            return (
+                <div style={{width: 400, height: 300}}>
+                    <YakitImageTextarea />
+                </div>
+            )
         case YakitRoute.HTTPHacker:
             return (
                 <Suspense fallback={<PageLoading />}>
@@ -508,7 +517,8 @@ export const RouteToPage: (props: PageItemProps) => ReactNode = (props) => {
         case YakitRoute.ControlAdminPage:
             return <ControlAdminPage />
         case YakitRoute.AddYakitScript:
-            return <PluginEditDetails />
+            return <AddYakitPlugin />
+            // return <PluginEditDetails />
         case YakitRoute.ModifyYakitScript:
             return <PluginEditDetails id={params?.editPluginId} />
         case YakitRoute.SimpleDetect:
